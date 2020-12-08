@@ -1,5 +1,8 @@
-const Timidity = require('timidity');
+const ScriptoPlayer = require('./ScriptoPlayer');
+
+var player = null;
 
 window.ScriptoPlayer = function() {
-	return new Timidity({baseUrl: '/bootstrap/timidity/'});
-};
+	if (!player) player = new ScriptoPlayer();
+	return player;
+}

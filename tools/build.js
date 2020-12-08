@@ -1,15 +1,20 @@
 const fs = require('fs');
 const browserify = require('browserify');
-//const gzipme = require('gzipme');
+const gzipme = require('gzipme');
 //const argv = require('minimist')(process.argv.slice(2));
 
-let outFolder = './build';
+function BuildBundle(outFolder) {
+	//if (fs.existsSync(outFolder)) fs.rmdirSync(outFolder, { recursive: true });
+	//fs.mkdirSync(outFolder);
 
-//if (fs.existsSync(outFolder)) fs.rmdirSync(outFolder, { recursive: true });
-//fs.mkdirSync(outFolder);
+	let b = browserify('src/index.js');
+	let rawFN = `${outFolder}/scripto.js`;
+	let rawOutFile = fs.createWriteStream(rawFN);
 
-var b = browserify('src/index.js');
-//b.transform('brfs');
-b.bundle().pipe(fs.createWriteStream(`${outFolder}/scripto-player.js`));
-b.transform("uglifyify", {global:true});
-b.bundle().pipe(fs.createWriteStream(`${outFolder}/scripto-player.min.js`));
+	rawOutFile.on('finish',() => gzipme(rawFN, {mode:'best', overwrite: true}));
+
+	b.transform("uglifyify", {global:true});
+	b.bundle().pipe(rawOutFile);
+}
+
+BuildBundle('./build');

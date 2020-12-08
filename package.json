@@ -4,7 +4,6 @@
 	"description": "Play a midi file in the browser",
 	"main": "src/index.js",
 	"scripts": {
-		"buildwpack": "webpack --mode=production --config webpack.config.js",
 		"build": "node tools/build.js"
 	},
 	"repository": {
@@ -19,6 +18,7 @@
 	"homepage": "https://github.com/nwc-scriptorium-org/scripto-player#readme",
 	"dependencies": {
 		"MIDI-Player": "github:nwc-scriptorium-org/MIDI-Player",
+		"debug": "^4.1.1",
 		"timidity": "github:noteworthycomposer-org/timidity#prebuilt"
 	},
 	"devDependencies": {
