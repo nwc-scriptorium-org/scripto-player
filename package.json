@@ -20,6 +20,7 @@
 		"transform": ["brfs"]
 	},
 	"dependencies": {
+		"brfs": "^2.0.0",
 		"MIDI-Player": "github:nwc-scriptorium-org/MIDI-Player",
 		"debug": "^4.1.1",
 		"timidity": "github:noteworthycomposer-org/timidity#prebuilt"
